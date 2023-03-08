@@ -19,10 +19,8 @@ const todoArray = [
 
 
 const TodoList = () => {
-  const todos = todoArray;
-
-	/*
   const [todos, setTodos] = useState(todoArray);
+
   const addTodo = () => {
     setTodos([
       ...todos,
@@ -34,7 +32,6 @@ const TodoList = () => {
       },
     ]);
   };
-*/
 
   return (
     <>
@@ -57,13 +54,9 @@ const TodoList = () => {
           ))}
         </tbody>
       </table>
-	  {
-	  /*
       <button className="btn btn-primary" onClick={addTodo}>
         Add
       </button>
-      */
-	  }
     </>
   );
 };
