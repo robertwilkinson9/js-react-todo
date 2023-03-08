@@ -1,13 +1,14 @@
 import logo from './logo.svg';
+import todo from './sticky-todo.jpg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={todo} className="App-todo" alt="todo" width={250} height={250} />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+	  My first react app - the TODO list
         </p>
         <a
           className="App-link"
