@@ -1,19 +1,19 @@
-.Todolist {
+.todoList {
   text-align: center;
 }
 
-.Todolist-logo {
+.todoList-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .Todolist-logo {
-    animation: Todolist-logo-spin infinite 20s linear;
+  .todoList-logo {
+    animation: todoList-logo-spin infinite 20s linear;
   }
 }
 
-.Todolist-header {
+.todoList-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,11 +24,11 @@
   color: white;
 }
 
-.Todolist-link {
+.todoList-link {
   color: #61dafb;
 }
 
-@keyframes Todolist-logo-spin {
+@keyframes todoList-logo-spin {
   from {
     transform: rotate(0deg);
   }

@@ -1,12 +1,14 @@
 import Banner from './Banner.js';
-import todoList from './todoList.js';
+import TodoList from './todoList.js';
 import './App.css';
 
 function App() {
   return (
 	  <div>
+	  {/*`
 	  <Banner />
-	  <todoList />
+	  */}
+	  <TodoList />
 	  </div>
   );
 }
