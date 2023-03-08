@@ -38,6 +38,7 @@ const TodoItem = ({ todo }) => {
   return (
     <tr>
 	  { /* <td>{Date.parse(todo.datetime)}</td> */ }
+	  { /*      <td>{new Intl.DateTimeFormat("en-GB", {year: "numeric", month: "long", day: "2-digit"}).format(todo.datetime)} </td> */}
       <td>{todo.datetime}</td>
       <td>{todo.summary}</td>
       <td>{todo.text}</td>
