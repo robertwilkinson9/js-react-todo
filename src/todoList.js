@@ -5,13 +5,13 @@ import TodoItem from "./todoItem";
 const todoArray = [
 	{
 		id: 1,
-		datetime: 202303081030,
+		datetime: "2023-03-08T10:30",
 		summary: "learn react",
 		text: "learn how to create react applications",
 	},
 	{
 		id: 2,
-		datetime:202312181000,
+		datetime: "2023-12-18T10:00",
 		summary: "prepare for christmas",
 		text: "Put up xmas tree and wait for Santa",
 	},
@@ -26,7 +26,7 @@ const TodoList = () => {
       ...todos,
       {
         id: 3,
-	datetime: 202304081030,
+	datetime: "2023-04-08T10:30",
 	summary: "improve typescript",
 	text: "learn how to write better typescript",
       },
