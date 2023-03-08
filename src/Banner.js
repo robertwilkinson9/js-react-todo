@@ -9,6 +9,7 @@ function Banner() {
         <p>
 	  My first react app - the TODO list
         </p>
+	  <!--
         <a
           className="Banner-link"
           href="https://reactjs.org"
@@ -17,6 +18,7 @@ function Banner() {
         >
           Learn React
         </a>
+	  -->
       </header>
     </div>
   );
