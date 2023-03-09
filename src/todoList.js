@@ -1,7 +1,8 @@
-/* import './todoList.css'; */
-import React, { useState } from "react";
 import TodoItem from "./todoItem";
+/* import './todoList.css'; */
+{/* import React, { useState } from "react"; */}
 
+{/*
 const todoArray = [
 	{
 		id: 1,
@@ -16,8 +17,11 @@ const todoArray = [
 		text: "Put up xmas tree and wait for Santa",
 	},
 ];
+*/}
 
 
+const TodoList = (props) => {
+	{ /*
 const TodoList = () => {
   const [todos, setTodos] = useState(todoArray);
 
@@ -32,6 +36,8 @@ const TodoList = () => {
       },
     ]);
   };
+  */}
+  const [todos, setTodos, addTodo] = [props.list, props.setter, props.adder]
 
   return (
     <>
@@ -55,7 +61,7 @@ const TodoList = () => {
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={addTodo}>
-        Add
+        Add New Item
       </button>
     </>
   );
