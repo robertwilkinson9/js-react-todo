@@ -1,43 +1,8 @@
 import TodoItem from "./todoItem";
-/* import './todoList.css'; */
-{/* import React, { useState } from "react"; */}
 
-{/*
-const todoArray = [
-	{
-		id: 1,
-		datetime: "2023-03-08T10:30",
-		summary: "learn react",
-		text: "learn how to create react applications",
-	},
-	{
-		id: 2,
-		datetime: "2023-12-18T10:00",
-		summary: "prepare for christmas",
-		text: "Put up xmas tree and wait for Santa",
-	},
-];
-*/}
-
-
-const TodoList = (props) => {
-	{ /*
-const TodoList = () => {
-  const [todos, setTodos] = useState(todoArray);
-
-  const addTodo = () => {
-    setTodos([
-      ...todos,
-      {
-        id: 3,
-	datetime: "2023-04-08T10:30",
-	summary: "improve typescript",
-	text: "learn how to write better typescript",
-      },
-    ]);
-  };
-  */}
-  const [todos, setTodos, addTodo] = [props.list, props.setter, props.adder]
+const TodoList = props => {
+	const [todos, setTodos, addTodo] = [props.list, props.setter, props.adder]
+	console.log("TODO LIST todos is ", JSON.stringify(todos));
 
   return (
     <>
@@ -56,7 +21,7 @@ const TodoList = () => {
         </thead>
         <tbody>
           {todos.map((h) => (
-            <TodoItem key={h.id} todo={h} />
+		  <TodoItem key={h.id} todo={h} />
           ))}
         </tbody>
       </table>

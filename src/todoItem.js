@@ -1,30 +1,17 @@
 import React, { useState } from "react";
 
-const todoArray = [
-	{
-		id: 1,
-		datetime: "2023-03-08T10:30",
-		summary: "learn react",
-		text: "learn how to create react applications",
-	},
-	{
-		id: 2,
-		datetime: "2023-12-18T10:00",
-		summary: "prepare for christmas",
-		text: "Put up xmas tree and wait for Santa",
-	},
-];
-
 const TodoItem = ({ todo }) => {
-  const [todos, setTodos] = useState(todoArray); 
+	console.log("TodoItem todo ", JSON.stringify(todo));
+  const id = todo.id;
 
-  const DeleteTodo = (id) => {
-    setTodos([
-      ...todos,
-    ]);
+  const DeleteTodo = ({id}) => {
+	  alert("Deleting " + id);
+	  {/*	  setTodos(todos.filter(todo => {return todo.id !== id})) */}
   };
 
-  const EditTodo = (id) => {
+  const EditTodo = ({id}) => {
+	  alert("Editingo " + id);
+	  {/* 
     setTodos([
       ...todos,
       {
@@ -34,21 +21,20 @@ const TodoItem = ({ todo }) => {
 	text: "learn how to write better typescript",
       },
     ]);
+  */ }
   };
   return (
     <tr>
-	  { /* <td>{Date.parse(todo.datetime)}</td> */ }
-	  { /*      <td>{new Intl.DateTimeFormat("en-GB", {year: "numeric", month: "long", day: "2-digit"}).format(todo.datetime)} </td> */}
       <td>{todo.datetime}</td>
       <td>{todo.summary}</td>
       <td>{todo.text}</td>
       <td>
-      	<button className="btn btn-primary" onClick={DeleteTodo}>
+      	<button className="btn btn-primary" onClick={() => DeleteTodo({id})}>
        	 Delete
 	</button>
       </td>
       <td>
-      	<button className="btn btn-primary" onClick={EditTodo}> Edit
+      	<button className="btn btn-primary" onClick={() => EditTodo({id})}> Edit
 	</button>
       </td>
     </tr>

@@ -22,6 +22,12 @@ const todoArray = [
 function App() {
   const [todos, setTodos] = useState(todoArray);
 
+  const addTodo = (todo) => {
+	  console.log(todo);
+	  todos = [...todos, todo];
+  };
+	// eslint-disable-next-line
+	{/*
   const addTodo = () => {
     setTodos([
       ...todos,
@@ -39,6 +45,7 @@ function App() {
   const setEditMode = (editmode) => {
 	  editmode = true;
   };
+  */ }
   
   return (
 	  <div>
