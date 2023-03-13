@@ -1,5 +1,6 @@
 import './edit.css';
 import Datetime from './datetime';
+import Summary from './summary';
 import Text from './text';
 
 const Edit = () => {
@@ -18,6 +19,7 @@ const Edit = () => {
 	  <table className="table table-hover">
 	  <tbody>
 	  <Datetime />
+	  <Summary />
 	  <Text />
 	  </tbody>
 	  </table>
