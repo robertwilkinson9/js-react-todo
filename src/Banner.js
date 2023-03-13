@@ -1,5 +1,4 @@
 import './Banner.css';
-{/* import todo from './sticky-todo.jpg'; */}
 
 function Banner() {
   return (

@@ -2,8 +2,9 @@ import TodoItem from "./todoItem";
 import DisplayActiveTodos from "./displayActiveTodos";
 
 const TodoList = props => {
-	const [todos, setTodos, addTodo, deleteTodo] = [props.list, props.setter, props.adder, props.deleter]
-	console.log("TODO LIST todos is ", JSON.stringify(todos));
+  const [todos, setTodos, addTodo, deleteTodo] = [props.list, props.setter, props.adder, props.deleter]
+  console.log("TODO LIST todos is ", JSON.stringify(todos));
+  console.log("TODO LIST adder is ", JSON.stringify(props.adder));
 
   return (
     <>

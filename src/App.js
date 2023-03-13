@@ -4,7 +4,6 @@ import EditButton from './editButton.js';
 import ListOrEditPage from './list_or_edit_page.js';
 import './App.css';
 
-		// is_active: true,
 const todoArray = [
 	{
 		id: 1,
@@ -36,40 +35,35 @@ function App() {
 		setTodos(newTodos);
 	};
 
-  const addTodo = (todo) => {
-	  console.log(todo);
-	  //	  let new_todos = [...todos, todo];
-  };
 
   const [edit_mode, setEditMode] = useState(false);
 
-const toggleEditCallback = (edit_mode) => {
-  setEditMode(edit_mode => !edit_mode)
-};
+  const toggleEditCallback = (edit_mode) => {
+    setEditMode(edit_mode => !edit_mode)
+  };
  
+//  const addTodo = (todo) => {
+//	  console.log(todo);
+//	  //	  let new_todos = [...todos, todo];
+//  };
 
-
-	// eslint-disable-next-line
-	{/*
   const addTodo = () => {
-    setTodos([
+    console.log("Adding todo");
+    alert("adding new eleement");
+    const newTodos = ([
       ...todos,
       {
         id: 3,
 	datetime: "2023-04-08T10:30",
 	summary: "improve typescript",
 	text: "learn how to write better typescript",
+	is_active: true,
       },
     ]);
+    console.log("AFTER addition and TODOS are ", JSON.stringify(newTodos));
+    setTodos(newTodos);
   };
 
-  let editMode = false;
-
-  const setEditMode = (editmode) => {
-	  editmode = true;
-  };
-  */ }
-  
   return (
 	<div>
 	  <Banner /> 
