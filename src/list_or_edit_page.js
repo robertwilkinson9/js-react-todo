@@ -5,7 +5,7 @@ const ListOrEditPage = (props) => {
           if (props.edit_mode) {
 	    return <Edit />
           } else {
-	    return <TodoList list={props.todos} setter={props.setter} adder={props.adder} deleter={props.deleter} />
+	    return <TodoList todos={props.todos} setter={props.setter} adder={props.adder} deleter={props.deleter} editer={props.editer} />
           }
 }
 

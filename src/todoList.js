@@ -2,9 +2,7 @@ import TodoItem from "./todoItem";
 import DisplayActiveTodos from "./displayActiveTodos";
 
 const TodoList = props => {
-  const [todos, setTodos, addTodo, deleteTodo] = [props.list, props.setter, props.adder, props.deleter]
-  console.log("TODO LIST todos is ", JSON.stringify(todos));
-  console.log("TODO LIST adder is ", JSON.stringify(props.adder));
+  console.log("TODO LIST todos is ", JSON.stringify(props.todos));
 
   return (
     <>
@@ -22,10 +20,10 @@ const TodoList = props => {
           </tr>
         </thead>
         <tbody>
-	  <DisplayActiveTodos todos={todos} />
+	  <DisplayActiveTodos todos={props.todos} deleter={props.deleter} editer={props.editer} />
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={addTodo}>
+      <button className="btn btn-primary" onClick={props.adder}>
         Add New Item
       </button>
     </>

@@ -25,15 +25,15 @@ function App() {
   const [todos, setTodos] = useState(todoArray);
 	console.log("App and TODOS are ", JSON.stringify(todos));
 
-	const onDelete = id => {
-		const newTodos = todos.map(todo => {
-			if (todo.id === id) {
-				return{...todo, is_active: false};
-			}
-			return todo;
- 		});
-		setTodos(newTodos);
-	};
+  const onDelete = id => {
+	const newTodos = todos.map(todo => {
+		if (todo.id === id) {
+			return{...todo, is_active: false};
+		}
+		return todo;
+ 	});
+	setTodos(newTodos);
+  };
 
 
   const [edit_mode, setEditMode] = useState(false);
@@ -64,13 +64,18 @@ function App() {
     setTodos(newTodos);
   };
 
+  const EditTodo = (props) => {
+    console.log("EDITING todo");
+    alert("editing eleement");
+  };
+
   return (
 	<div>
 	  <Banner /> 
           <center>
 	  <EditButton edit_mode={edit_mode} toggle_edit_callback={toggleEditCallback} /> 
           </center>
-          <ListOrEditPage edit_mode={edit_mode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} />
+          <ListOrEditPage edit_mode={edit_mode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} editer={EditTodo} />
 	</div>
   );
 }
