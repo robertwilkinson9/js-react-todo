@@ -5,20 +5,6 @@ const TodoList = props => {
 	const [todos, setTodos, addTodo, deleteTodo] = [props.list, props.setter, props.adder, props.deleter]
 	console.log("TODO LIST todos is ", JSON.stringify(todos));
 
-{/*
-	const show_some = todo => {
-	  console.log("show_some todo is ", JSON.stringify(todo));
-		if (todo.is_active) {
-			<TodoItem key={todo.id} todo={todo} />
-		} 
-	}
-
-	const display_if_active = (props) => {
-	  console.log("display_if_active todos is ", JSON.stringify(props.todos));
-          props.todos.map(show_some);
-	};
-*/}
-
   return (
     <>
       <div className="row mb-2">
@@ -35,9 +21,6 @@ const TodoList = props => {
           </tr>
         </thead>
         <tbody>
-{/*
-          <TodoList />
-*/}
 	  <DisplayActiveTodos todos={todos} />
         </tbody>
       </table>

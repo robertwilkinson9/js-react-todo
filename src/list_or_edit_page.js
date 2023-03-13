@@ -6,7 +6,6 @@ const ListOrEditPage = (props) => {
           if (props.edit_mode) {
 	    return <Edit />
           } else {
-{/*	    return <ToDoList /> */}
 	    return <TodoList list={props.todos} setter={props.setTodos} adder={props.addTodo} deleter={props.onDelete} />
           }
 }
