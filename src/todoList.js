@@ -1,9 +1,11 @@
 import TodoItem from "./todoItem";
+import DisplayActiveTodos from "./displayActiveTodos";
 
 const TodoList = props => {
 	const [todos, setTodos, addTodo, deleteTodo] = [props.list, props.setter, props.adder, props.deleter]
 	console.log("TODO LIST todos is ", JSON.stringify(todos));
 
+{/*
 	const show_some = todo => {
 	  console.log("show_some todo is ", JSON.stringify(todo));
 		if (todo.is_active) {
@@ -15,6 +17,7 @@ const TodoList = props => {
 	  console.log("display_if_active todos is ", JSON.stringify(props.todos));
           props.todos.map(show_some);
 	};
+*/}
 
   return (
     <>
@@ -32,7 +35,7 @@ const TodoList = props => {
           </tr>
         </thead>
         <tbody>
-	  {display_if_active({todos})}
+	  <DisplayActiveTodos todos={todos} />
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={addTodo}>
@@ -41,12 +44,5 @@ const TodoList = props => {
     </>
   );
 };
-{/*
-	  {todos.map((h) => (
-		  <TodoItem key={h.id} todo={h} />
-	  ))}
-	  */}
-{/*		  display_if_active(h) */}
-		  {/* <TodoItem key={h.id} todo={h} /> */}
 
 export default TodoList;
