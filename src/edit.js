@@ -1,7 +1,7 @@
 import './edit.css';
-import Summary from './summary';
 import Datetime from './datetime';
 import Text from './text';
+{/* import Summary from './summary'; */}
 
 const Edit = () => {
   return (
@@ -14,14 +14,17 @@ const Edit = () => {
     <div className="edit">
       <header className="edit-header">
 	  {/* <form action =""> */}
-	  <form onSubmit ="">
+	  {/* <form onSubmit =""> */}
+	  <form>
 	  <table className="table table-hover">
+	  <tbody>
 	  {/* <tr><td>Summary</td><td><input type ="text" id="summary" /></td></tr> */}
 	  { /* <tr><td>Datetime</td><td><input type ="text" id="datetime" /></td></tr> */}
 	  { /* <tr><td>Text</td><td><input type ="text" id="text" /></td></tr> */ }
-	  <Summary />
+	  {/* <Summary /> */}
 	  <Datetime />
 	  <Text />
+	  </tbody>
 	  </table>
 	  <input type="submit" />
 	  </form>

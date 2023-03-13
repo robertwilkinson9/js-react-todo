@@ -28,6 +28,7 @@ const TodoItem = ({ todo }) => {
       <td>{todo.datetime}</td>
       <td>{todo.summary}</td>
       <td>{todo.text}</td>
+      <td>{todo.is_active}</td>
       <td>
       	<button className="btn btn-primary" onClick={() => DeleteTodo({id})}>
        	 Delete
