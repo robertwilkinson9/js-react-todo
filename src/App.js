@@ -11,7 +11,7 @@ const todoArray = [
 		datetime: "2023-03-08T10:30",
 		summary: "learn react",
 		text: "learn how to create react applications",
-		is_active: false,
+		is_active: true,
 	},
 	{
 		id: 2,
