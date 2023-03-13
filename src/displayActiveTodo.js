@@ -7,7 +7,7 @@ const DisplayActiveTodo = (props) => {
 
 	if (todo.is_active) {
 		return (<>
-                       <TodoItem key={todo.id} todo={todo} />
+                       <TodoItem key={props.todo.id} todos={props.todos} todo={props.todo} setter={props.setter} />
                        </>);
         } else {
           return (<></>);

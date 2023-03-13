@@ -1,28 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+// import React, { useState } from "react";
 
-const TodoItem = ({ todo }) => {
-	console.log("TodoItem todo ", JSON.stringify(todo));
+const TodoItem = (props) => {
+  const [todo, todos, setTodos] = [props.todo, props.todos, props.setter]
+  console.log("TodoItem todo ", JSON.stringify(todo));
   const id = todo.id;
 
   const DeleteTodo = ({id}) => {
 	  alert("Deleting " + id);
-	  {/*	  setTodos(todos.filter(todo => {return todo.id !== id})) */}
+	  setTodos(todos.filter(todo => {return todo.id !== id})) 
   };
 
   const EditTodo = ({id}) => {
 	  alert("Editingo " + id);
-	  {/* 
-    setTodos([
-      ...todos,
-      {
-        id: 3,
-	datetime: "2023-04-08T10:30",
-	summary: "improve typescript",
-	text: "learn how to write better typescript",
-      },
-    ]);
-  */ }
   };
+
   return (
     <tr>
       <td>{todo.datetime}</td>
