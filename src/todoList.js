@@ -35,6 +35,9 @@ const TodoList = props => {
           </tr>
         </thead>
         <tbody>
+{/*
+          <TodoList />
+*/}
 	  <DisplayActiveTodos todos={todos} />
         </tbody>
       </table>
