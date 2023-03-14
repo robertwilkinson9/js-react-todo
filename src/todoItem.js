@@ -1,5 +1,4 @@
 import React from "react";
-// import React, { useState } from "react";
 
 const TodoItem = (props) => {
   const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
@@ -11,7 +10,6 @@ const TodoItem = (props) => {
 	  setTodos(todos.filter(todo => {return todo.id !== id})) 
   };
 
-  //const UpdateEditId = ({id}) => {
   const UpdateEditId = (props) => {
 	  alert("UPDATING element " + props.todo.id);
 	  setId(id);

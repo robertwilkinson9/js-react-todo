@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Banner from './Banner.js';
 import EditButton from './editButton.js';
-//import EditTodo from './editTodo.js';
 import ListOrEditPage from './list_or_edit_page.js';
 import './App.css';
 
@@ -36,6 +35,22 @@ function App() {
 	setTodos(newTodos);
   };
 
+  const onUpdate = props => {
+	console.log("App onUpdate and TODOS are ", JSON.stringify(props.todos));
+        const [id] = [props.edit_id];
+	console.log("App onUpdate and ID is ", id);
+        const [datetime, summary, text] = [props.datetime, props.summary, props.text];
+        const newtodo = {id: id, datetime, summary, text, is_active: true};
+	console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
+	const newTodos = todos.map(todo => {
+		if (todo.id === id) {
+			return newtodo;
+		}
+		return todo;
+ 	});
+	setTodos(newTodos);
+  };
+
 
   const [edit_id, setEditId] = useState(-1);
 
@@ -45,11 +60,6 @@ function App() {
     setEditMode(edit_mode => !edit_mode)
   };
  
-//  const addTodo = (todo) => {
-//	  console.log(todo);
-//	  //	  let new_todos = [...todos, todo];
-//  };
-
   const addTodo = () => {
     console.log("Adding todo");
     alert("adding new eleement");
@@ -67,20 +77,13 @@ function App() {
     setTodos(newTodos);
   };
 
-{/*
-  const EditTodo = (props) => {
-    console.log("EDITING todo");
-    alert("editing eleement");
-  };
-*/}
-
   return (
 	<div>
 	  <Banner /> 
           <center>
 	  <EditButton edit_mode={edit_mode} toggle_edit_callback={toggleEditCallback} /> 
           </center>
-          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} edit_id={edit_id} setid={setEditId} />
+          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} updater={onUpdate} edit_id={edit_id} setid={setEditId} />
 	</div>
   );
 }

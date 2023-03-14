@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './edit.css';
 
 const Edit = (props) => {
-  const [todos, edit_id, index, setter, adder] = [props.todos, props.edit_id, props.index, props.setter, props.adder];
+  const [todos, edit_id, index, setter, adder, updater] = [props.todos, props.edit_id, props.index, props.setter, props.adder, props.updater];
   console.log("EDIT edit_id is ", props.edit_id);
   console.log("Edit TODOs is ", JSON.stringify(props.todos));
 
@@ -25,15 +25,10 @@ const Edit = (props) => {
   let initSumm=""
   let initText=""
   if (todo) {
-  console.log("todo is SET");
-  console.log("and TODO is ", JSON.stringify(todo));
-  console.log("datetime is ", todo.datetime);
+   console.log("and TODO is ", JSON.stringify(todo));
    initDT=todo.datetime
-  console.log("initDT 0 is ", initDT);
    initSumm=todo.summary
-  console.log("initSumm 0 is ", initSumm);
    initText=todo.text
-  console.log("initText 0 is ", initText);
   }
   console.log("initDT is ", initDT);
   console.log("initSumm is ", initSumm);
@@ -57,6 +52,10 @@ const Edit = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault();
+    //const myprops = {...props, "datetime": {datetime}, "summary": {summary}, "text": {text}, "todo": {todo}, "id": {edit_id} };
+    const myprops = {...props, datetime, summary, text };
+    console.log("Edit handleSubmit MYPROPS is ", JSON.stringify(myprops));
+    updater(myprops); 
     alert('You have submitted the form.')
   }
 
