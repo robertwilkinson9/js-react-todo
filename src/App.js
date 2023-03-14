@@ -40,14 +40,26 @@ function App() {
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
         const [datetime, summary, text] = [props.datetime, props.summary, props.text];
-        const newtodo = {id: id, datetime, summary, text, is_active: true};
-	console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-	const newTodos = todos.map(todo => {
+	let newTodos = {};
+        if (id == -1) {
+          const max_id = Math.max(...props.todos.map(o => o.id));
+	  console.log("App onUpdate and MAX_ID is ", max_id);
+          const new_id = max_id + 1;
+          const newtodo = {id: new_id, datetime, summary, text, is_active: true};
+	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
+	  newTodos = todos;
+	  newTodos.push(newtodo);
+        } else {
+          const newtodo = {id: id, datetime, summary, text, is_active: true};
+  	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
+  	  newTodos = todos.map(todo => {
 		if (todo.id === id) {
 			return newtodo;
 		}
 		return todo;
- 	});
+   	  });
+        }
+	console.log("App onUpdate and NEWTODOS are ", JSON.stringify(newTodos));
 	setTodos(newTodos);
   };
 
@@ -76,6 +88,8 @@ function App() {
     console.log("AFTER addition and TODOS are ", JSON.stringify(newTodos));
     setTodos(newTodos);
   };
+{/*
+*/}
 
   return (
 	<div>

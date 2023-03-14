@@ -1,8 +1,15 @@
 import TodoItem from "./todoItem";
 import DisplayActiveTodos from "./displayActiveTodos";
 
+
 const TodoList = (props) => {
+  console.log("TODO LIST props is ", JSON.stringify(props));
   console.log("TODO LIST todos is ", JSON.stringify(props.todos));
+
+  const UpdateEditMode = (props) => {
+          const [setEditMode] = [props.seteditmode];
+          setEditMode(true);
+  };
 
   return (
     <>
@@ -23,7 +30,10 @@ const TodoList = (props) => {
 	  <DisplayActiveTodos todos={props.todos} setter={props.setter} deleter={props.deleter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} />
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={props.adder}>
+      {/*
+      <button className="btn btn-primary" onClick={props.adder}> -->
+      */}
+      <button className="btn btn-primary" onClick={() => {UpdateEditMode(props)}}>
         Add New Item
       </button>
     </>
