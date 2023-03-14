@@ -20,7 +20,7 @@ const TodoList = (props) => {
           </tr>
         </thead>
         <tbody>
-	  <DisplayActiveTodos todos={props.todos} setter={props.setter} deleter={props.deleter} editer={props.editer} />
+	  <DisplayActiveTodos todos={props.todos} setter={props.setter} deleter={props.deleter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} />
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={props.adder}>

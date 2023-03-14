@@ -5,7 +5,7 @@ const DisplayActiveTodos = (props) => {
 
   return (
     <>
-         {props.todos?.map((todo) => <DisplayActiveTodo key={todo.id} todos={props.todos} todo={todo} setter={props.setter} /> )}
+         {props.todos?.map((todo) => <DisplayActiveTodo key={todo.id} todos={props.todos} todo={todo} setter={props.setter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} /> )}
     </>
   );
 };

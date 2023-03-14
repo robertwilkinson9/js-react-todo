@@ -1,28 +1,82 @@
+import React, { useState } from "react";
 import './edit.css';
 
-const Edit = () => {
+const Edit = (props) => {
+  const [todos, edit_id, index, setter, adder] = [props.todos, props.edit_id, props.index, props.setter, props.adder];
+  console.log("EDIT edit_id is ", props.edit_id);
+  console.log("Edit TODOs is ", JSON.stringify(props.todos));
+
+  const todoToEdit = todos.filter((todo) => todo.id === edit_id );
+  console.log("todoToEdit is ", JSON.stringify(todoToEdit));
+
+  let todo = {};
+  if (index < 0) {
+  // new element
+  console.log("length of todos is ", todos.length);
+  const last_index = todos.length - 1;
+  const last_todo = todos[last_index]
+  console.log("last id of todos is ", last_todo.id);
+  console.log("ADDING new element to todos");
+  } else {
+  todo = todoToEdit[0];
+  }
+
+  let initDT=""
+  let initSumm=""
+  let initText=""
+  if (todo) {
+  console.log("todo is SET");
+  console.log("and TODO is ", JSON.stringify(todo));
+  console.log("datetime is ", todo.datetime);
+   initDT=todo.datetime
+  console.log("initDT 0 is ", initDT);
+   initSumm=todo.summary
+  console.log("initSumm 0 is ", initSumm);
+   initText=todo.text
+  console.log("initText 0 is ", initText);
+  }
+  console.log("initDT is ", initDT);
+  console.log("initSumm is ", initSumm);
+  console.log("initText is ", initText);
+  
+  const [datetime, setDatetime] = React.useState(initDT);
+  const [summary, setSummary] = React.useState(initSumm);
+  const [text, setText] = React.useState(initText);
+
+  const handleDatetime = (event) => {
+    setDatetime(event.target.value);
+  };
+
+  const handleSummary = (event) => {
+    setSummary(event.target.value);
+  };
+
+  const handleText = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    alert('You have submitted the form.')
+  }
+
   return (
 	  <>
-	        <div className="row mb-2">
-	          <h5 className="themeFontColor text-center">
-	            Form for adding new items
-	          </h5>
-	        </div>
     <div className="edit">
-      <header className="edit-header">
-	  {/* <form action =""> */}
-	  {/* <form onSubmit =""> */}
-	  <form>
-	  <table className="table table-hover">
-	  <tbody>
-	  <tr><td>Datetime</td><td><input type ="text" id="datetime" /></td></tr>
-	  <tr><td>Summary</td><td><input type ="text" id="summary" /></td></tr>
-	  <tr><td>Text</td><td><input type ="text" id="text" /></td></tr>
-	  </tbody>
-	  </table>
-	  <input type="submit" />
+	  <form onSubmit={handleSubmit}>
+          <fieldset>
+          <div>
+	  <label htmlFor="datetime">Datetime</label><input type ="text" id="datetime" value={datetime} onChange={handleDatetime}/>
+          </div>
+          <div>
+	  <label htmlFor="summary">Summary</label><input type ="text" id="summary" value={summary} onChange={handleSummary} />
+          </div>
+          <div>
+	  <label htmlFor="text">Text</label><input type ="text" id="text" value={text} onChange={handleText} />
+          </div>
+          </fieldset>
+	  <button type="submit">Submit Form</button>
 	  </form>
-      </header>
     </div>
 	  </>
   );

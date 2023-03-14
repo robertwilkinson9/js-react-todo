@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Banner from './Banner.js';
 import EditButton from './editButton.js';
+//import EditTodo from './editTodo.js';
 import ListOrEditPage from './list_or_edit_page.js';
 import './App.css';
 
@@ -36,6 +37,8 @@ function App() {
   };
 
 
+  const [edit_id, setEditId] = useState(-1);
+
   const [edit_mode, setEditMode] = useState(false);
 
   const toggleEditCallback = (edit_mode) => {
@@ -64,10 +67,12 @@ function App() {
     setTodos(newTodos);
   };
 
+{/*
   const EditTodo = (props) => {
     console.log("EDITING todo");
     alert("editing eleement");
   };
+*/}
 
   return (
 	<div>
@@ -75,7 +80,7 @@ function App() {
           <center>
 	  <EditButton edit_mode={edit_mode} toggle_edit_callback={toggleEditCallback} /> 
           </center>
-          <ListOrEditPage edit_mode={edit_mode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} editer={EditTodo} />
+          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} edit_id={edit_id} setid={setEditId} />
 	</div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 // import React, { useState } from "react";
 
 const TodoItem = (props) => {
-  const [todo, todos, setTodos] = [props.todo, props.todos, props.setter]
+  const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
   console.log("TodoItem todo ", JSON.stringify(todo));
   const id = todo.id;
 
@@ -11,8 +11,11 @@ const TodoItem = (props) => {
 	  setTodos(todos.filter(todo => {return todo.id !== id})) 
   };
 
-  const EditTodo = ({id}) => {
-	  alert("Editingo " + id);
+  //const UpdateEditId = ({id}) => {
+  const UpdateEditId = (props) => {
+	  alert("UPDATING element " + props.todo.id);
+	  setId(id);
+          setEditMode(true);
   };
 
   return (
@@ -27,7 +30,7 @@ const TodoItem = (props) => {
 	</button>
       </td>
       <td>
-      	<button className="btn btn-primary" onClick={() => EditTodo({id})}> Edit
+      	<button className="btn btn-primary" onClick={() => UpdateEditId(props)}> Edit
 	</button>
       </td>
     </tr>
