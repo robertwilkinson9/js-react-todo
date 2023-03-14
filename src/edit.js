@@ -1,7 +1,4 @@
 import './edit.css';
-import Datetime from './datetime';
-import Summary from './summary';
-import Text from './text';
 
 const Edit = () => {
   return (
@@ -18,9 +15,9 @@ const Edit = () => {
 	  <form>
 	  <table className="table table-hover">
 	  <tbody>
-	  <Datetime />
-	  <Summary />
-	  <Text />
+	  <tr><td>Datetime</td><td><input type ="text" id="datetime" /></td></tr>
+	  <tr><td>Summary</td><td><input type ="text" id="summary" /></td></tr>
+	  <tr><td>Text</td><td><input type ="text" id="text" /></td></tr>
 	  </tbody>
 	  </table>
 	  <input type="submit" />
