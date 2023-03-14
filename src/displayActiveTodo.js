@@ -1,7 +1,7 @@
 import TodoItem from "./todoItem";
 
 const DisplayActiveTodo = (props) => {
-	const [key, todo] = [props.key, props.todo]
+	const [key, todo] = [props.todo.id, props.todo]
 	console.log("DisplayActiveTodo TODO key is ", JSON.stringify(key));
 	console.log("DisplayActiveTodo TODO todo is ", JSON.stringify(todo));
 

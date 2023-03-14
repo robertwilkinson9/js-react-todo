@@ -41,7 +41,7 @@ function App() {
 	console.log("App onUpdate and ID is ", id);
         const [datetime, summary, text] = [props.datetime, props.summary, props.text];
 	let newTodos = {};
-        if (id == -1) {
+        if (id === -1) { // new todo
           const max_id = Math.max(...props.todos.map(o => o.id));
 	  console.log("App onUpdate and MAX_ID is ", max_id);
           const new_id = max_id + 1;
@@ -61,6 +61,7 @@ function App() {
         }
 	console.log("App onUpdate and NEWTODOS are ", JSON.stringify(newTodos));
 	setTodos(newTodos);
+        setEditMode(false);      
   };
 
 
@@ -72,32 +73,10 @@ function App() {
     setEditMode(edit_mode => !edit_mode)
   };
  
-  const addTodo = () => {
-    console.log("Adding todo");
-    alert("adding new eleement");
-    const newTodos = ([
-      ...todos,
-      {
-        id: 3,
-	datetime: "2023-04-08T10:30",
-	summary: "improve typescript",
-	text: "learn how to write better typescript",
-	is_active: true,
-      },
-    ]);
-    console.log("AFTER addition and TODOS are ", JSON.stringify(newTodos));
-    setTodos(newTodos);
-  };
-{/*
-*/}
-
   return (
 	<div>
 	  <Banner /> 
-          <center>
-	  <EditButton edit_mode={edit_mode} toggle_edit_callback={toggleEditCallback} /> 
-          </center>
-          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} adder={addTodo} deleter={onDelete} updater={onUpdate} edit_id={edit_id} setid={setEditId} />
+          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} deleter={onDelete} updater={onUpdate} edit_id={edit_id} setid={setEditId} />
 	</div>
   );
 }
