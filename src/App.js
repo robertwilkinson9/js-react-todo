@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Banner from './Banner.js';
-import EditButton from './editButton.js';
 import ListOrEditPage from './list_or_edit_page.js';
 import './App.css';
 
@@ -64,15 +63,9 @@ function App() {
         setEditMode(false);      
   };
 
-
   const [edit_id, setEditId] = useState(-1);
-
   const [edit_mode, setEditMode] = useState(false);
 
-  const toggleEditCallback = (edit_mode) => {
-    setEditMode(edit_mode => !edit_mode)
-  };
- 
   return (
 	<div>
 	  <Banner /> 

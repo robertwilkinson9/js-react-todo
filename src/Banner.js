@@ -9,7 +9,7 @@ function Banner() {
 	*/ }
         <img src="./sticky-todo.jpg" className="Banner-todo" alt="where is my?" width={250} height={250} />
         <p>
-	  My first react app - the TODO list
+	  My TODO list
         </p>
       </header>
     </div>

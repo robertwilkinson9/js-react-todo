@@ -1,4 +1,3 @@
-import TodoItem from "./todoItem";
 import DisplayActiveTodos from "./displayActiveTodos";
 
 
@@ -7,10 +6,6 @@ const TodoList = (props) => {
   console.log("TODO LIST todos is ", JSON.stringify(props.todos));
 
   const UpdateEditMode = (props) => {
-{/*
-          const [setEditMode] = [props.seteditmode];
-          setEditMode(true);
-*/}
           props.seteditmode(true);
   };
 

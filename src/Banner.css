@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/*
 .Banner-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,10 +13,11 @@
     animation: Banner-logo-spin infinite 20s linear;
   }
 }
+*/
 
 .Banner-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +26,7 @@
   color: white;
 }
 
+/*
 .Banner-link {
   color: #61dafb;
 }
@@ -36,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+*/
