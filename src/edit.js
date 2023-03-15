@@ -69,17 +69,19 @@ const Edit = (props) => {
     <div className="edit">
 	  <form onSubmit={handleSubmit} onCancel={handleCancel}>
           <fieldset>
-          <div>
-	  <label htmlFor="datetime">Datetime</label><input type ="text" id="datetime" value={datetime} onChange={handleDatetime}/>
-          </div>
-          <div>
-	  <label htmlFor="summary">Summary</label><input type ="text" id="summary" value={summary} onChange={handleSummary} />
-          </div>
-          <div>
-	  <label htmlFor="text">Text</label><input type ="text" id="text" value={text} onChange={handleText} />
-          </div>
+          <table><tbody>
+          <tr><td>
+	  <label htmlFor="datetime">Datetime</label></td><td><input type ="text" id="datetime" value={datetime} onChange={handleDatetime}/>
+          </td></tr>
+          <tr><td>
+	  <label htmlFor="summary">Summary</label></td><td><input type ="text" id="summary" value={summary} onChange={handleSummary} />
+          </td></tr>
+          <tr><td>
+	  <label htmlFor="text">Text</label></td><td><input type ="text" id="text" value={text} onChange={handleText} />
+          </td></tr>
+          </tbody></table>
           </fieldset>
-	  <button type="submit">Submit Form</button>
+	  <button type="submit">Add Todo Item</button>
           <button type="submit" onClick={handleCancel}>Cancel</button>
 	  </form>
     </div>
