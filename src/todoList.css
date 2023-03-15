@@ -2,13 +2,8 @@
   text-align: center;
 }
 
-.todoList-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .todoList-header {
-  background-color: #282c34;
+  background-color: #28ffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,3 +16,21 @@
 .todoList-link {
   color: #61dafb;
 }
+
+table {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-width: 2px;
+  border-style: solid;
+  border-color: blue;
+  background-color: #a8ffff;
+  text-align: center;
+}
+
+/*.btn-primary.button { */
+button {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  text-align: center;
+}
+

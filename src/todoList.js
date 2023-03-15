@@ -1,5 +1,5 @@
 import DisplayActiveTodos from "./displayActiveTodos";
-
+import "./todoList.css"
 
 const TodoList = (props) => {
   console.log("TODO LIST props is ", JSON.stringify(props));
