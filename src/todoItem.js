@@ -6,7 +6,9 @@ const TodoItem = (props) => {
   const id = todo.id;
 
   const DeleteTodo = ({id}) => {
-	  setTodos(todos.filter(todo => {return todo.id !== id})) 
+	  const newtodos = todos.filter(todo => {return todo.id !== id});
+          console.log("DeleteTodo -> newtodos are ", JSON.stringify(newtodos));
+          setTodos(newtodos)
   };
 
   const UpdateEditId = (props) => {
@@ -19,7 +21,6 @@ const TodoItem = (props) => {
       <td>{todo.datetime}</td>
       <td>{todo.summary}</td>
       <td>{todo.text}</td>
-      <td>{todo.is_active}</td>
       <td>
       	<button className="btn btn-primary" onClick={() => DeleteTodo({id})}>
        	 Delete

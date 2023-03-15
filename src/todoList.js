@@ -1,4 +1,4 @@
-import DisplayActiveTodos from "./displayActiveTodos";
+import DisplayTodos from "./displayTodos";
 import "./todoList.css"
 
 const TodoList = (props) => {
@@ -25,7 +25,7 @@ const TodoList = (props) => {
           </tr>
         </thead>
         <tbody>
-	  <DisplayActiveTodos todos={props.todos} setter={props.setter} deleter={props.deleter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} />
+	  <DisplayTodos todos={props.todos} setter={props.setter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} />
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={() => {UpdateEditMode(props)}}>
