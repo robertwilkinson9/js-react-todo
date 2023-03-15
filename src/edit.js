@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './edit.css';
 
 const Edit = (props) => {
-  const [todos, edit_id, index, setter, updater] = [props.todos, props.edit_id, props.index, props.setter, props.updater];
+  const [todos, edit_id, setid, index, setter, updater, seteditmode] = [props.todos, props.edit_id, props.setid, props.index, props.setter, props.updater, props.seteditmode];
   console.log("EDIT edit_id is ", props.edit_id);
   console.log("Edit TODOs is ", JSON.stringify(props.todos));
 
@@ -52,17 +52,22 @@ const Edit = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    //const myprops = {...props, "datetime": {datetime}, "summary": {summary}, "text": {text}, "todo": {todo}, "id": {edit_id} };
     const myprops = {...props, datetime, summary, text };
     console.log("Edit handleSubmit MYPROPS is ", JSON.stringify(myprops));
     updater(myprops); 
-    alert('You have submitted the form.')
+  }
+
+  const handleCancel = event => {
+    event.preventDefault();
+    console.log("Edit handleCancel PROPS is ", JSON.stringify(props));
+    setid(-1);
+    seteditmode(false)
   }
 
   return (
 	  <>
     <div className="edit">
-	  <form onSubmit={handleSubmit}>
+	  <form onSubmit={handleSubmit} onCancel={handleCancel}>
           <fieldset>
           <div>
 	  <label htmlFor="datetime">Datetime</label><input type ="text" id="datetime" value={datetime} onChange={handleDatetime}/>
@@ -75,6 +80,7 @@ const Edit = (props) => {
           </div>
           </fieldset>
 	  <button type="submit">Submit Form</button>
+          <button type="submit" onClick={handleCancel}>Cancel</button>
 	  </form>
     </div>
 	  </>
