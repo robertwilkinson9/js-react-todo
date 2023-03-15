@@ -60,6 +60,7 @@ function App() {
         }
 	console.log("App onUpdate and NEWTODOS are ", JSON.stringify(newTodos));
 	setTodos(newTodos);
+        setEditId(-1);
         setEditMode(false);      
   };
 
