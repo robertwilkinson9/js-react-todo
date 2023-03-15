@@ -22,6 +22,9 @@ const todoArray = [
 
 function App() {
   const [todos, setTodos] = useState(todoArray);
+  const [edit_id, setEditId] = useState(-1);
+  const [edit_mode, setEditMode] = useState(false);
+
 	console.log("App and TODOS are ", JSON.stringify(todos));
 
   const onDelete = id => {
@@ -63,9 +66,6 @@ function App() {
         setEditId(-1);
         setEditMode(false);      
   };
-
-  const [edit_id, setEditId] = useState(-1);
-  const [edit_mode, setEditMode] = useState(false);
 
   return (
 	<div>
