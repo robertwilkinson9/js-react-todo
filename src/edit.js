@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import './edit.css';
 
 const Edit = (props) => {
-  const [todos, edit_id, setid, index, setter, updater, seteditmode] = [props.todos, props.edit_id, props.setid, props.index, props.setter, props.updater, props.seteditmode];
+  const [todos, edit_id, setid, index, updater, seteditmode] = [props.todos, props.edit_id, props.setid, props.index, props.updater, props.seteditmode];
   console.log("EDIT edit_id is ", props.edit_id);
   console.log("Edit TODOs is ", JSON.stringify(props.todos));
 

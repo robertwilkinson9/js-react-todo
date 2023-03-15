@@ -6,12 +6,10 @@ const TodoItem = (props) => {
   const id = todo.id;
 
   const DeleteTodo = ({id}) => {
-	  alert("Deleting " + id);
 	  setTodos(todos.filter(todo => {return todo.id !== id})) 
   };
 
   const UpdateEditId = (props) => {
-	  alert("UPDATING element " + props.todo.id);
 	  setId(id);
           setEditMode(true);
   };
