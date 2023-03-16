@@ -26,7 +26,7 @@ const Edit = (props) => {
   let initText=""
   if (todo) {
    console.log("and TODO is ", JSON.stringify(todo));
-   initDT=todo.datetime
+   initDT=todo.due
    initSumm=todo.summary
    initText=todo.text
   }
@@ -34,12 +34,12 @@ const Edit = (props) => {
   console.log("initSumm is ", initSumm);
   console.log("initText is ", initText);
   
-  const [datetime, setDatetime] = React.useState(initDT);
+  const [due, setDuedate] = React.useState(initDT);
   const [summary, setSummary] = React.useState(initSumm);
   const [text, setText] = React.useState(initText);
 
-  const handleDatetime = (event) => {
-    setDatetime(event.target.value);
+  const handleDuedate = (event) => {
+    setDuedate(event.target.value);
   };
 
   const handleSummary = (event) => {
@@ -52,7 +52,7 @@ const Edit = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const myprops = {...props, datetime, summary, text };
+    const myprops = {...props, due, summary, text };
     console.log("Edit handleSubmit MYPROPS is ", JSON.stringify(myprops));
     updater(myprops); 
   }
@@ -71,7 +71,7 @@ const Edit = (props) => {
           <fieldset>
           <table><tbody>
           <tr><td>
-	  <label htmlFor="datetime">Datetime</label></td><td><input type ="text" id="datetime" value={datetime} onChange={handleDatetime}/>
+	  <label htmlFor="due">Datetime</label></td><td><input type ="text" id="due" value={due} onChange={handleDuedate}/>
           </td></tr>
           <tr><td>
 	  <label htmlFor="summary">Summary</label></td><td><input type ="text" id="summary" value={summary} onChange={handleSummary} />

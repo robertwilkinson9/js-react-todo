@@ -1,46 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from './Banner.js';
 import ListOrEditPage from './list_or_edit_page.js';
 import './App.css';
 
-const todoArray = [
-	{
-		id: 1,
-		datetime: "2023-03-08T10:30",
-		summary: "learn react",
-		text: "learn how to create react applications",
-	},
-	{
-		id: 2,
-		datetime: "2023-12-18T10:00",
-		summary: "prepare for christmas",
-		text: "Put up xmas tree and wait for Santa",
-	},
-];
-
 function App() {
-  const [todos, setTodos] = useState(todoArray);
+  const [todos, setTodos] = useState([]);
   const [edit_id, setEditId] = useState(-1);
   const [edit_mode, setEditMode] = useState(false);
 
-  console.log("App and TODOS are ", JSON.stringify(todos));
+  console.log("before useEffect App and TODOS are ", JSON.stringify(todos));
+
+    useEffect(() => {
+        const getAPI = () => {
+            // Change this endpoint to whatever local or online address you have
+            // Local PostgreSQL Database
+            //const API = 'http://127.0.0.1:5000/'; // XXX WSL is b0rked
+            const API = 'http://localhost:5000/';
+
+            fetch(API)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    setTodos(data);
+                });
+        };
+        getAPI();
+    }, []);
+
+  console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
 
   const onUpdate = props => {
 	console.log("App onUpdate and TODOS are ", JSON.stringify(props.todos));
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
-        const [datetime, summary, text] = [props.datetime, props.summary, props.text];
+        const [due, summary, text] = [props.due, props.summary, props.text];
 	let newTodos = {};
         if (id === -1) { // new todo
           const max_id = Math.max(...props.todos.map(o => o.id));
 	  console.log("App onUpdate and MAX_ID is ", max_id);
           const new_id = max_id + 1;
-          const newtodo = {id: new_id, datetime, summary, text};
+          const newtodo = {id: new_id, due, summary, text};
 	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
 	  newTodos = todos;
 	  newTodos.push(newtodo);
         } else {
-          const newtodo = {id: id, datetime, summary, text};
+          const newtodo = {id: id, due, summary, text};
   	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
   	  newTodos = todos.map(todo => {
 		if (todo.id === id) {
@@ -58,7 +63,6 @@ function App() {
   return (
 	<div>
 	  <Banner /> 
-{/*          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} deleter={onDelete} updater={onUpdate} edit_id={edit_id} setid={setEditId} /> */}
           <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} updater={onUpdate} edit_id={edit_id} setid={setEditId} />
 	</div>
   );

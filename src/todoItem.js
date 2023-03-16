@@ -18,7 +18,7 @@ const TodoItem = (props) => {
 
   return (
     <tr>
-      <td>{todo.datetime}</td>
+      <td>{todo.due}</td>
       <td>{todo.summary}</td>
       <td>{todo.text}</td>
       <td>

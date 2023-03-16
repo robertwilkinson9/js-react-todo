@@ -2,11 +2,10 @@ import DisplayTodos from "./displayTodos";
 import "./todoList.css"
 
 const TodoList = (props) => {
-  console.log("TODO LIST props is ", JSON.stringify(props));
   console.log("TODO LIST todos is ", JSON.stringify(props.todos));
 
   const UpdateEditMode = (props) => {
-          props.seteditmode(true);
+    props.seteditmode(true);
   };
 
   return (
@@ -19,7 +18,7 @@ const TodoList = (props) => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th>Datetime</th>
+            <th>Due Datetime</th>
             <th>Summary</th>
             <th>Text</th>
           </tr>
