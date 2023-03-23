@@ -7,28 +7,26 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [edit_id, setEditId] = useState(-1);
   const [edit_mode, setEditMode] = useState(false);
+  const API_url = 'http://localhost:5000/api/';
 
   console.log("before useEffect App and TODOS are ", JSON.stringify(todos));
 
     useEffect(() => {
-        const getAPI = () => {
+        const get_todos = () => {
             // Change this endpoint to whatever local or online address you have
             // Local PostgreSQL Database
-            //const API = 'http://127.0.0.1:5000/'; // XXX WSL is b0rked
-            const API = 'http://localhost:5000/api/todos';
-            // const API = 'http://localhost:5000/api/';
+            //const TODOS_url = 'http://127.0.0.1:5000/'; // XXX WSL is b0rked
+            const TODOS_url = API_url + 'todos/';
 
-            fetch(API)
+            fetch(TODOS_url)
                 .then((response) => {
-                    console.log("JSON -> ");
                     return response.json();
                 })
                 .then((data) => {
-                    console.log("DATA -> ");
                     setTodos(data);
                 });
         };
-        getAPI();
+        get_todos();
     }, []);
 
 /*

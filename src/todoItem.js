@@ -3,10 +3,10 @@ import React from "react";
 const TodoItem = (props) => {
   const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
   console.log("TodoItem todo ", JSON.stringify(todo));
-  const id = todo.id;
+  const id = todo._id;
 
   const DeleteTodo = ({id}) => {
-	  const newtodos = todos.filter(todo => {return todo.id !== id});
+	  const newtodos = todos.filter(todo => {return todo._id !== id});
           console.log("DeleteTodo -> newtodos are ", JSON.stringify(newtodos));
           setTodos(newtodos)
   };

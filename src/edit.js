@@ -6,7 +6,7 @@ const Edit = (props) => {
   console.log("EDIT edit_id is ", props.edit_id);
   console.log("Edit TODOs is ", JSON.stringify(props.todos));
 
-  const todoToEdit = todos.filter((todo) => todo.id === edit_id );
+  const todoToEdit = todos.data.filter((todo) => todo._id === edit_id );
   console.log("todoToEdit is ", JSON.stringify(todoToEdit));
 
   let todo = {};
