@@ -29,11 +29,6 @@ function App() {
         get_todos();
     }, []);
 
-/*
-                    console.log(response.json());
-                    console.log(data);
-*/
-
   console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
 
   const onUpdate = props => {
@@ -41,27 +36,45 @@ function App() {
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
         const [due, summary, text] = [props.due, props.summary, props.text];
-	let newTodos = {};
+	let newTodos = [];
         if (id === -1) { // new todo
-          const max_id = Math.max(...props.todos.map(o => o.id));
-	  console.log("App onUpdate and MAX_ID is ", max_id);
-          const new_id = max_id + 1;
-          const newtodo = {id: new_id, due, summary, text};
+          const TODO_url = API_url + 'todo/';
+          // const max_id = Math.max(...props.todos.map(o => o.id));
+	  // console.log("App onUpdate and MAX_ID is ", max_id);
+          // const new_id = max_id + 1;
+          const newtodo = {due, summary, text};
+          // const newtodo = {id: new_id, due, summary, text};
 	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-	  newTodos = todos;
+	  newTodos = todos.data;
 	  newTodos.push(newtodo);
+          fetch(TODO_url, {
+            method: 'POST',
+            body: JSON.stringify(newtodo),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+             .then((response) => response.json())
+             .then((data) => {
+                console.log(data);
+                // Handle data
+             })
+             .catch((err) => {
+                console.log(err.message);
+             });
+///
         } else {
           const newtodo = {id: id, due, summary, text};
   	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
   	  newTodos = todos.map(todo => {
-		if (todo.id === id) {
+		if (todo._id === id) {
 			return newtodo;
 		}
 		return todo;
    	  });
         }
 	console.log("App onUpdate and NEWTODOS are ", JSON.stringify(newTodos));
-	setTodos(newTodos);
+	// setTodos(newTodos);
         setEditId(-1);
         setEditMode(false);      
   };
