@@ -1,6 +1,4 @@
 const Todo = require('../models/todo-model')
-console.log("got Todo");
-console.log(JSON.stringify(Todo));
 
 createTodo = (req, res) => {
     const body = req.body
@@ -118,6 +116,8 @@ getTodos = async (req, res) => {
     const todos = await Todo.find( { } );
     console.log("todos.length is ");
     console.log(todos.length);
+    console.log("todos[0].summary is ");
+    console.log(todos[0].summary);
     if (!todos.length) {
         return res
             .status(404)

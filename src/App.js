@@ -15,18 +15,26 @@ function App() {
             // Change this endpoint to whatever local or online address you have
             // Local PostgreSQL Database
             //const API = 'http://127.0.0.1:5000/'; // XXX WSL is b0rked
-            const API = 'http://localhost:5000/';
+            const API = 'http://localhost:5000/api/todos';
+            // const API = 'http://localhost:5000/api/';
 
             fetch(API)
                 .then((response) => {
+                    console.log("JSON -> ");
                     return response.json();
                 })
                 .then((data) => {
+                    console.log("DATA -> ");
                     setTodos(data);
                 });
         };
         getAPI();
     }, []);
+
+/*
+                    console.log(response.json());
+                    console.log(data);
+*/
 
   console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
 
