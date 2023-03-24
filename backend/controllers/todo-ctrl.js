@@ -43,6 +43,19 @@ updateTodo = async (req, res) => {
         })
     }
 
+    const thisTodo = Todo.findOne({ _id: req.params.id } );
+    if (!thisTodos.length) {
+        return res
+            .status(404)
+            .json({ success: false, error: `No Todos found` })
+    }
+    if (thisTodos.length !== 1) {
+        return res
+            .status(404)
+            .json({ success: false, error: `Too many Todos found` })
+    }
+    return res.status(200).json({ success: true, data: thisTodo })
+/*
     Todo.findOne({ _id: req.params.id }, (err, todo) => {
         if (err) {
             return res.status(404).json({
@@ -69,6 +82,7 @@ updateTodo = async (req, res) => {
                 })
             })
     })
+*/
 }
 
 deleteTodo = async (req, res) => {

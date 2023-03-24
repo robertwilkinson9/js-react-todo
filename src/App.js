@@ -11,21 +11,20 @@ function App() {
 
   console.log("before useEffect App and TODOS are ", JSON.stringify(todos));
 
-    useEffect(() => {
-        const get_todos = () => {
-            // Change this endpoint to whatever local or online address you have
-            // Local PostgreSQL Database
-            //const TODOS_url = 'http://127.0.0.1:5000/'; // XXX WSL is b0rked
-            const TODOS_url = API_url + 'todos/';
+  const get_todos = () => {
+    // Change this endpoint to whatever local or online address you have
+    const TODOS_url = API_url + 'todos/';
 
-            fetch(TODOS_url)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    setTodos(data);
-                });
-        };
+    fetch(TODOS_url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setTodos(data);
+      });
+    };
+
+    useEffect(() => {
         get_todos();
     }, []);
 
@@ -36,17 +35,14 @@ function App() {
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
         const [due, summary, text] = [props.due, props.summary, props.text];
+        const TODO_url = API_url + 'todo/';
 	let newTodos = [];
         if (id === -1) { // new todo
-          const TODO_url = API_url + 'todo/';
-          // const max_id = Math.max(...props.todos.map(o => o.id));
-	  // console.log("App onUpdate and MAX_ID is ", max_id);
-          // const new_id = max_id + 1;
           const newtodo = {due, summary, text};
           // const newtodo = {id: new_id, due, summary, text};
 	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-	  newTodos = todos.data;
-	  newTodos.push(newtodo);
+	  // newTodos = todos.data;
+	  // newTodos.push(newtodo);
           fetch(TODO_url, {
             method: 'POST',
             body: JSON.stringify(newtodo),
@@ -62,18 +58,35 @@ function App() {
              .catch((err) => {
                 console.log(err.message);
              });
+      console.log("App onUpdate and NOW todos are ", JSON.stringify(todos));
 ///
         } else {
+          const this_TODO_url = TODO_url + id;
+  	  console.log("App onUpdate and this_TODO_url is ", this_TODO_url);
           const newtodo = {id: id, due, summary, text};
   	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-  	  newTodos = todos.map(todo => {
+          fetch(this_TODO_url, {
+            method: 'PATCH',
+            body: JSON.stringify(newtodo),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+             .then((response) => response.json())
+             .then((data) => {
+                console.log(data);
+                // Handle data
+             })
+             .catch((err) => {
+                console.log(JSON.stringify(err.message));
+             });
+  	  newTodos = todos.data.map(todo => {
 		if (todo._id === id) {
 			return newtodo;
 		}
 		return todo;
    	  });
         }
-	console.log("App onUpdate and NEWTODOS are ", JSON.stringify(newTodos));
 	// setTodos(newTodos);
         setEditId(-1);
         setEditMode(false);      
