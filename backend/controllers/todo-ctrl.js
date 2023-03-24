@@ -44,12 +44,16 @@ updateTodo = async (req, res) => {
     }
 
     const thisTodo = Todo.findOne({ _id: req.params.id } );
-    if (!thisTodos.length) {
+    console.log("thistodo.length is ");
+    console.log(thisTodo.length);
+    console.log("thistodo[0].summary is ");
+    console.log(thistodo[0].summary);
+    if (!thisTodo.length) {
         return res
             .status(404)
             .json({ success: false, error: `No Todos found` })
     }
-    if (thisTodos.length !== 1) {
+    if (thisTodo.length !== 1) {
         return res
             .status(404)
             .json({ success: false, error: `Too many Todos found` })
@@ -86,7 +90,20 @@ updateTodo = async (req, res) => {
 }
 
 deleteTodo = async (req, res) => {
-    await Todo.findOneAndDelete({ _id: req.params.id }, (err, todo) => {
+   console.log("toDelete.id is ");
+   console.log(req.params.id);
+   const toDelete = await Todo.findOneAndDelete({ _id: req.params.id })
+   console.log("toDelete.length is ");
+   console.log(toDelete.length);
+   if (!toDelete) {
+     return res
+     .status(404)
+     .json({ success: false, error: `Todo not found` })
+   }
+
+   return res.status(200).json({ success: true, data: toDelete })
+/*
+   , (err, todo) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -99,9 +116,37 @@ deleteTodo = async (req, res) => {
 
         return res.status(200).json({ success: true, data: todo })
     }).catch(err => console.log(err))
+/*
+   await Todo.findOneAndDelete({ _id: req.params.id }, (err, todo) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!todo) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Todo not found` })
+        }
+
+        return res.status(200).json({ success: true, data: todo })
+    }).catch(err => console.log(err))
+*/
 }
 
 getTodoById = async (req, res) => {
+    console.log("getTodoById.id is ");
+    console.log(req.params.id);
+    const todo = await Todo.findOne({ _id: req.params.id } )
+    console.log("getTodoById.length is ");
+    console.log(getTodoById.length);
+
+    if (!todo) {
+      return res
+      .status(404)
+      .json({ success: false, error: `Todo not found` })
+    }
+    return res.status(200).json({ success: true, data: todo })
+/*
     await Todo.findOne({ _id: req.params.id }, (err, todo) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -114,18 +159,10 @@ getTodoById = async (req, res) => {
         }
         return res.status(200).json({ success: true, data: todo })
     }).catch(err => console.log(err))
+*/
 }
 
 getTodos = async (req, res) => {
-/*
-  Todo.find({ })
-  .then((doc) => {
-    console.log(doc);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-*/
 
     const todos = await Todo.find( { } );
     console.log("todos.length is ");
@@ -138,23 +175,7 @@ getTodos = async (req, res) => {
             .json({ success: false, error: `No Todos found` })
     }
     return res.status(200).json({ success: true, data: todos })
-/*
-    await Todo.find({}, (err, todos) => {
-    if (err) {
-        return res.status(400).json({ success: false, error: err })
-    }
-    if (!todos.length) {
-        return res
-            .status(404)
-            .json({ success: false, error: `No Todos found` })
-    }
-    return res.status(200).json({ success: true, data: todos })
-    }).catch(err => console.log(err))
-*/
 }
-    //const todos = await Todo.find();
-    //const todos = await db.todo.find();
-    //const todos = await todo.find();
 
 module.exports = {
     createTodo,

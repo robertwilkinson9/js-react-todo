@@ -20,7 +20,9 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        setTodos(data);
+	console.log("GET_TODOS and data are ", JSON.stringify(data));
+        setTodos(data.data);
+//        setTodos(data);
       });
     };
 
@@ -77,17 +79,16 @@ function App() {
                 console.log(data);
                 // Handle data
              })
-             .catch((err) => {
-                console.log(JSON.stringify(err.message));
-             });
+             .catch((err) => {console.log(err.message);});
+{ /*
   	  newTodos = todos.data.map(todo => {
 		if (todo._id === id) {
 			return newtodo;
 		}
 		return todo;
    	  });
+*/ }
         }
-	// setTodos(newTodos);
         setEditId(-1);
         setEditMode(false);      
   };
@@ -95,7 +96,7 @@ function App() {
   return (
 	<div>
 	  <Banner /> 
-          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} updater={onUpdate} edit_id={edit_id} setid={setEditId} />
+          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} updater={onUpdate} edit_id={edit_id} setid={setEditId} getTodos={get_todos} />
 	</div>
   );
 }

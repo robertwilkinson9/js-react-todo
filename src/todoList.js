@@ -24,7 +24,7 @@ const TodoList = (props) => {
           </tr>
         </thead>
         <tbody>
-	  <DisplayTodos todos={props.todos} setter={props.setter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} />
+	  <DisplayTodos todos={props.todos} setter={props.setter} edit_id={props.edit_id} seteditmode={props.seteditmode} setid={props.setid} getTodos={props.getTodos} />
         </tbody>
       </table>
       <button className="btn btn-primary" onClick={() => {UpdateEditMode(props)}}>
