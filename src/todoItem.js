@@ -9,7 +9,6 @@ const TodoItem = (props) => {
   // pass these down from App.js - but test for now.
   const API_url = 'http://localhost:5000/api/';
   const TODO_url = API_url + 'todo/';
-  const TODOS_url = API_url + 'todos/';
 
   const DeleteMongoTodo = ({id}) => {
     console.log("DeleteMongoTodo -> ID is ", id);
@@ -31,18 +30,6 @@ const TodoItem = (props) => {
     });
   };
 
-{ /*
-  const resetTodos = () => {
-    fetch(TODOS_url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setTodos(data);
-      });
-  };
-*/ }
-
   // all the above should be in a top level mongo db file and passed down as props?
 
   const DeleteTodo = ({id}) => {
@@ -51,7 +38,6 @@ const TodoItem = (props) => {
     const newtodos = todos.filter(todo => {return todo._id !== id});
     console.log("DeleteTodo -> newtodos are ", JSON.stringify(newtodos));
     DeleteMongoTodo({id})
-//    resetTodos();
     setTodos(newtodos);
   };
 

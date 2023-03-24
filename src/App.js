@@ -8,6 +8,7 @@ function App() {
   const [edit_id, setEditId] = useState(-1);
   const [edit_mode, setEditMode] = useState(false);
   const API_url = 'http://localhost:5000/api/';
+  const TODO_url = API_url + 'todo/';
 
   console.log("before useEffect App and TODOS are ", JSON.stringify(todos));
 
@@ -20,15 +21,32 @@ function App() {
         return response.json();
       })
       .then((data) => {
-	console.log("GET_TODOS and data are ", JSON.stringify(data));
         setTodos(data.data);
-//        setTodos(data);
       });
     };
 
     useEffect(() => {
         get_todos();
     }, []);
+
+  const add_todo = (newtodo) => {
+    console.log("ADD_TODO and newtodo is ", JSON.stringify(newtodo));
+    fetch(TODO_url, {
+      method: 'POST',
+      body: JSON.stringify(newtodo),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // Handle data
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  };
 
   console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
 
@@ -37,31 +55,12 @@ function App() {
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
         const [due, summary, text] = [props.due, props.summary, props.text];
-        const TODO_url = API_url + 'todo/';
 	let newTodos = [];
         if (id === -1) { // new todo
           const newtodo = {due, summary, text};
-          // const newtodo = {id: new_id, due, summary, text};
 	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-	  // newTodos = todos.data;
-	  // newTodos.push(newtodo);
-          fetch(TODO_url, {
-            method: 'POST',
-            body: JSON.stringify(newtodo),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-            },
-          })
-             .then((response) => response.json())
-             .then((data) => {
-                console.log(data);
-                // Handle data
-             })
-             .catch((err) => {
-                console.log(err.message);
-             });
-      console.log("App onUpdate and NOW todos are ", JSON.stringify(todos));
-///
+          add_todo({newtodo});
+          console.log("App onUpdate and NOW todos are ", JSON.stringify(todos));
         } else {
           const this_TODO_url = TODO_url + id;
   	  console.log("App onUpdate and this_TODO_url is ", this_TODO_url);
@@ -80,14 +79,6 @@ function App() {
                 // Handle data
              })
              .catch((err) => {console.log(err.message);});
-{ /*
-  	  newTodos = todos.data.map(todo => {
-		if (todo._id === id) {
-			return newtodo;
-		}
-		return todo;
-   	  });
-*/ }
         }
         setEditId(-1);
         setEditMode(false);      

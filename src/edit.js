@@ -6,7 +6,7 @@ const Edit = (props) => {
   console.log("EDIT edit_id is ", props.edit_id);
   console.log("Edit TODOs is ", JSON.stringify(props.todos));
 
-  const todoToEdit = todos.data.filter((todo) => todo._id === edit_id );
+  const todoToEdit = todos.filter((todo) => todo._id === edit_id );
   console.log("todoToEdit is ", JSON.stringify(todoToEdit));
 
   let todo = {};
@@ -51,10 +51,15 @@ const Edit = (props) => {
   };
 
   const handleSubmit = event => {
+    console.log("Edit handleSubmit PROPS is ", JSON.stringify(props));
+    console.log("Edit handleSubmit PROPS.TODOS is ", JSON.stringify(props.todos));
     event.preventDefault();
-    const myprops = {...props, due, summary, text };
-    console.log("Edit handleSubmit MYPROPS is ", JSON.stringify(myprops));
-    updater(myprops); 
+    const newtodo = { due, summary, text };
+    let newTodos = props.todos;
+    newTodos.push(newtodo);
+    // const newlist = {...props.todos, newtodo };
+    console.log("Edit handleSubmit NEWLIST is ", JSON.stringify(newTodos));
+    updater(newTodos); 
   }
 
   const handleCancel = event => {
