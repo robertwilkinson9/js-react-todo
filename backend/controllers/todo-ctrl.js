@@ -33,8 +33,16 @@ createTodo = (req, res) => {
         })
 }
 
+String.prototype.toObjectId = function() {
+  var ObjectId = (require('mongoose').Types.ObjectId);
+  return new ObjectId(this.toString());
+};
+
 updateTodo = async (req, res) => {
     const body = req.body
+
+    console.log("body is ");
+    console.log(body);
 
     if (!body) {
         return res.status(400).json({
@@ -43,22 +51,35 @@ updateTodo = async (req, res) => {
         })
     }
 
-    const thisTodo = Todo.findOne({ _id: req.params.id } );
-    console.log("thistodo.length is ");
-    console.log(thisTodo.length);
-    console.log("thistodo[0].summary is ");
-    console.log(thistodo[0].summary);
-    if (!thisTodo.length) {
-        return res
-            .status(404)
-            .json({ success: false, error: `No Todos found` })
-    }
-    if (thisTodo.length !== 1) {
-        return res
-            .status(404)
-            .json({ success: false, error: `Too many Todos found` })
-    }
-    return res.status(200).json({ success: true, data: thisTodo })
+    const req_params_id = req.params.id;
+    console.log("req_params_id is ");
+    console.log(req_params_id);
+    const object_params_id = req_params_id.toObjectId();
+    console.log("object_params_id is ");
+    console.log(object_params_id);
+
+    let mydata = {};
+    filter = { _id: object_params_id };
+    await Todo.findOneAndUpdate(filter, body, {new: true})
+//    await Todo.findOneAndUpdate(filter, body)
+//    await Todo.findOne(filter)
+//    await Todo.findOne({ _id: object_params_id })
+      .then((result) => {
+        mydata=result;
+      })
+      .catch((err) => {
+       console.log(err);
+      });
+    console.log("mydata is ");
+    console.log(mydata);
+    console.log("mydata.due is ");
+    console.log(mydata.due);
+    console.log("mydata.summary is ");
+    console.log(mydata.summary);
+    console.log("mydata.text is ");
+    console.log(mydata.text);
+
+    return res.status(200).json({ success: true, data: mydata })
 /*
     Todo.findOne({ _id: req.params.id }, (err, todo) => {
         if (err) {
