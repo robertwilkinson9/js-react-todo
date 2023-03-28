@@ -54,7 +54,8 @@ const Edit = (props) => {
     console.log("Edit handleSubmit PROPS is ", JSON.stringify(props));
     console.log("Edit handleSubmit PROPS.TODOS is ", JSON.stringify(props.todos));
     event.preventDefault();
-    const newtodo = { due, summary, text };
+    let _id = edit_id;
+    let newtodo = { _id, due, summary, text };
     let newTodos = props.todos;
     newTodos.push(newtodo);
     // const newlist = {...props.todos, newtodo };

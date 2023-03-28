@@ -42,8 +42,12 @@ const TodoItem = (props) => {
   };
 
   const UpdateEditId = (props) => {
-	  setId(id);
-          setEditMode(true);
+    console.log("UpdateEditId -> props are ", JSON.stringify(props));
+    const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
+    const id = todo._id;
+    console.log("UpdateEditId -> id is ", id);
+    setId(id);
+    setEditMode(true);
   };
 
   return (

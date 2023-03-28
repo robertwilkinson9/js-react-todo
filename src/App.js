@@ -28,6 +28,7 @@ function App() {
     useEffect(() => {
         get_todos();
     }, []);
+  console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
 
   const add_todo = (newtodo) => {
     console.log("ADD_TODO and newtodo is ", JSON.stringify(newtodo));
@@ -48,15 +49,13 @@ function App() {
     });
   };
 
-  console.log("after useEffect App and TODOS are ", JSON.stringify(todos));
-
   const onUpdate = props => {
 	console.log("App onUpdate and TODOS are ", JSON.stringify(props.todos));
         const [id] = [props.edit_id];
 	console.log("App onUpdate and ID is ", id);
         const [due, summary, text] = [props.due, props.summary, props.text];
 	let newTodos = [];
-        if (id === -1) { // new todo
+        if ((id == undefined) || (id === -1)) { // new todo
           const newtodo = {due, summary, text};
 	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
           add_todo({newtodo});
@@ -87,7 +86,7 @@ function App() {
   return (
 	<div>
 	  <Banner /> 
-          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} updater={onUpdate} edit_id={edit_id} setid={setEditId} getTodos={get_todos} />
+          <ListOrEditPage edit_mode={edit_mode} seteditmode={setEditMode} todos={todos} setter={setTodos} add_todo={add_todo} updater={onUpdate} edit_id={edit_id} setid={setEditId} getTodos={get_todos} />
 	</div>
   );
 }
