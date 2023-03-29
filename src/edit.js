@@ -55,12 +55,13 @@ const Edit = (props) => {
     console.log("Edit handleSubmit PROPS.TODOS is ", JSON.stringify(props.todos));
     event.preventDefault();
     let _id = edit_id;
-    let newtodo = { _id, due, summary, text };
-    let newTodos = props.todos;
+    let newtodo = { _id: _id, due, summary, text };
+    console.log("Edit handleSubmit NEWTODO is ", JSON.stringify(newtodo));
+    let newTodos = props.todos.filter(todo => {return todo._id !== edit_id});
     newTodos.push(newtodo);
     // const newlist = {...props.todos, newtodo };
-    console.log("Edit handleSubmit NEWLIST is ", JSON.stringify(newTodos));
-    updater(newTodos); 
+    console.log("Edit handleSubmit NEWTODOS is ", JSON.stringify(newTodos));
+    updater( { todos: newTodos, todo: newtodo, edit_id: edit_id } ); 
   }
 
   const handleCancel = event => {

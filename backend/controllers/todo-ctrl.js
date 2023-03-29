@@ -38,6 +38,43 @@ String.prototype.toObjectId = function() {
   return new ObjectId(this.toString());
 };
 
+{ /*
+
+
+If anyone's looking for a TypeScript version of MarsRobot's answer, try this:
+
+function nameof<T>(obj: T, expression: (x: { [Property in keyof T]: () => string }) => () => string): string
+{
+    const res: { [Property in keyof T]: () => string } = {} as { [Property in keyof T]: () => string };
+
+    Object.keys(obj).map(k => res[k as keyof T] = () => k);
+
+    return expression(res)();
+}
+
+Usage:
+
+const obj = {
+    property1: 'Jim',
+    property2: 'Bloggs',
+    property3: 'Bloggs',
+    method: () => 'a string',
+    child: { property4: 'child1' }
+};
+
+const test1 = nameof(obj, x => x.property1);
+const test2 = nameof(obj, x => x.property2);
+const test3 = nameof(obj, x => x.method);
+const test4 = nameof(obj.child, x => x.property4);
+
+console.log(test1);    // -> 'property1'
+console.log(test2);    // -> 'property2'
+console.log(test3);    // -> 'method'
+console.log(test4);    // -> 'property4'
+
+*/ }
+
+
 updateTodo = async (req, res) => {
     const body = req.body
 
@@ -61,9 +98,6 @@ updateTodo = async (req, res) => {
     let mydata = {};
     filter = { _id: object_params_id };
     await Todo.findOneAndUpdate(filter, body, {new: true})
-//    await Todo.findOneAndUpdate(filter, body)
-//    await Todo.findOne(filter)
-//    await Todo.findOne({ _id: object_params_id })
       .then((result) => {
         mydata=result;
       })
@@ -80,42 +114,12 @@ updateTodo = async (req, res) => {
     console.log(mydata.text);
 
     return res.status(200).json({ success: true, data: mydata })
-/*
-    Todo.findOne({ _id: req.params.id }, (err, todo) => {
-        if (err) {
-            return res.status(404).json({
-                err,
-                message: 'Todo not found!',
-            })
-        }
-        todo.name = body.name
-        todo.time = body.time
-        todo.rating = body.rating
-        todo
-            .save()
-            .then(() => {
-                return res.status(200).json({
-                    success: true,
-                    id: todo._id,
-                    message: 'Todo updated!',
-                })
-            })
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'Todo not updated!',
-                })
-            })
-    })
-*/
 }
 
 deleteTodo = async (req, res) => {
    console.log("toDelete.id is ");
    console.log(req.params.id);
    const toDelete = await Todo.findOneAndDelete({ _id: req.params.id })
-   console.log("toDelete.length is ");
-   console.log(toDelete.length);
    if (!toDelete) {
      return res
      .status(404)
@@ -123,35 +127,6 @@ deleteTodo = async (req, res) => {
    }
 
    return res.status(200).json({ success: true, data: toDelete })
-/*
-   , (err, todo) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!todo) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Todo not found` })
-        }
-
-        return res.status(200).json({ success: true, data: todo })
-    }).catch(err => console.log(err))
-/*
-   await Todo.findOneAndDelete({ _id: req.params.id }, (err, todo) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!todo) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Todo not found` })
-        }
-
-        return res.status(200).json({ success: true, data: todo })
-    }).catch(err => console.log(err))
-*/
 }
 
 getTodoById = async (req, res) => {
@@ -167,20 +142,6 @@ getTodoById = async (req, res) => {
       .json({ success: false, error: `Todo not found` })
     }
     return res.status(200).json({ success: true, data: todo })
-/*
-    await Todo.findOne({ _id: req.params.id }, (err, todo) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!todo) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Todo not found` })
-        }
-        return res.status(200).json({ success: true, data: todo })
-    }).catch(err => console.log(err))
-*/
 }
 
 getTodos = async (req, res) => {

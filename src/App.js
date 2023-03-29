@@ -41,6 +41,7 @@ function App() {
     })
     .then((response) => response.json())
     .then((data) => {
+      console.log("------------add_todo returned data is");
       console.log(data);
       // Handle data
     })
@@ -50,37 +51,40 @@ function App() {
   };
 
   const onUpdate = props => {
+	console.log("--> App onUpdate and PROPS are ", JSON.stringify(props));
 	console.log("App onUpdate and TODOS are ", JSON.stringify(props.todos));
-        const [id] = [props.edit_id];
+	console.log("App onUpdate and TODO is ", JSON.stringify(props.todo));
+        const [id, todo] = [props.edit_id, props.todo];
 	console.log("App onUpdate and ID is ", id);
-        const [due, summary, text] = [props.due, props.summary, props.text];
-	let newTodos = [];
-        if ((id == undefined) || (id === -1)) { // new todo
-          const newtodo = {due, summary, text};
-	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
-          add_todo({newtodo});
-          console.log("App onUpdate and NOW todos are ", JSON.stringify(todos));
+        if ((id === undefined) || (id === -1)) { // new todo
+          const due = todo.due;
+          const summary = todo.summary;
+          const text = todo.text;
+          add_todo({due: due, summary: summary, text: text});
         } else {
           const this_TODO_url = TODO_url + id;
   	  console.log("App onUpdate and this_TODO_url is ", this_TODO_url);
-          const newtodo = {id: id, due, summary, text};
-  	  console.log("App onUpdate and NEWTODO is ", JSON.stringify(newtodo));
+  	  console.log("App onUpdate and TODO is ", JSON.stringify(todo));
           fetch(this_TODO_url, {
-            method: 'PATCH',
-            body: JSON.stringify(newtodo),
+            method: 'PUT',
+            body: JSON.stringify(todo),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
             },
           })
              .then((response) => response.json())
              .then((data) => {
+                console.log("PUT data is");
                 console.log(data);
                 // Handle data
              })
              .catch((err) => {console.log(err.message);});
+          setTodos(props.todos);
         }
         setEditId(-1);
         setEditMode(false);      
+        setTodos(props.todos);
+	console.log("App onUpdate at end of function TODOS are ", JSON.stringify(todos));
   };
 
   return (

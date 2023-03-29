@@ -1,7 +1,8 @@
 import React from "react";
 
 const TodoItem = (props) => {
-  const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
+//  const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
+  const [todo, todos, setTodos] = [props.todo, props.todos, props.setter]
   console.log("TodoItem todos are ", JSON.stringify(todos));
   console.log("TodoItem todo ", JSON.stringify(todo));
   const id = todo._id;
@@ -22,6 +23,7 @@ const TodoItem = (props) => {
     })
     .then((response) => response.json())
     .then((data) => {
+      console.log("delete data is ");
       console.log(data);
       // Handle data
     })
@@ -33,17 +35,18 @@ const TodoItem = (props) => {
   // all the above should be in a top level mongo db file and passed down as props?
 
   const DeleteTodo = ({id}) => {
-    console.log("DeleteTodo -> todos are ", JSON.stringify(todos));
     console.log("DeleteTodo -> deleting ", id);
+    DeleteMongoTodo({id})
+    console.log("DeleteTodo -> todos are ", JSON.stringify(todos));
     const newtodos = todos.filter(todo => {return todo._id !== id});
     console.log("DeleteTodo -> newtodos are ", JSON.stringify(newtodos));
-    DeleteMongoTodo({id})
     setTodos(newtodos);
   };
 
   const UpdateEditId = (props) => {
     console.log("UpdateEditId -> props are ", JSON.stringify(props));
-    const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
+//    const [todo, todos, setTodos, setId, setEditMode] = [props.todo, props.todos, props.setter, props.setid, props.seteditmode]
+    const [todo, setId, setEditMode] = [props.todo, props.setid, props.seteditmode]
     const id = todo._id;
     console.log("UpdateEditId -> id is ", id);
     setId(id);
